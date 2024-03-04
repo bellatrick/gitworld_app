@@ -3,7 +3,7 @@ import dotenv from "dotenv";
 import passport from "passport";
 import session from "express-session";
 import path from "path";
-import cors from 'cors'
+//import cors from 'cors'
 import "./passport/github.auth.js";
 
 import userRoutes from "./routes/user.route.js";
@@ -25,21 +25,21 @@ app.use(session({ secret: "keyboard cat", resave: false, saveUninitialized: fals
 app.use(passport.initialize());
 app.use(passport.session());
 
-app.use(cors({
-    origin: ['http://localhost:3000', 'http://localhost:3000/login'],
-    credentials: true, // Include if your frontend sends credentials (e.g., cookies)
-  }));
+// app.use(cors({
+//     origin: ['http://localhost:3000', 'http://localhost:3000/login'],
+//     credentials: true, // Include if your frontend sends credentials (e.g., cookies)
+//   }));
 
 
 app.use("/api/auth", authRoutes);
 app.use("/api/users", userRoutes);
 app.use("/api/explore", exploreRoutes);
 
-// app.use(express.static(path.join(__dirname, "/frontend/dist")));
+app.use(express.static(path.join(__dirname, "/frontend/dist")));
 
-// app.get("*", (req, res) => {
-// 	res.sendFile(path.join(__dirname, "frontend", "dist", "index.html"));
-// });
+app.get("*", (req, res) => {
+	res.sendFile(path.join(__dirname, "frontend", "dist", "index.html"));
+});
 
 app.listen(PORT, () => {
 	console.log(`Server started on http://localhost:${PORT}`);
