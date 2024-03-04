@@ -11,4 +11,4 @@ export const PROGRAMMING_LANGUAGES = {
 	CSS: "/css.svg",
 };
 
-export const CLIENT_BASE_URL="https://gitworld-app.onrender.com/"
+export const CLIENT_BASE_URL="https://gitworld-app.onrender.com"
